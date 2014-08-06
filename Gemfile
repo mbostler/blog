@@ -30,6 +30,8 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
+  gem 'capistrano-nginx-unicorn'
+  gem 'capistrano-rails'
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
   gem 'cucumber'

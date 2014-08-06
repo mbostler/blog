@@ -6,7 +6,8 @@ class CreateRoles < ActiveRecord::Migration
       t.timestamps
     end
     
-    Role.create! name: "admin"
-    Role.create! name: "family"
+    %w(admin family friend coworker).each do |role|
+      Role.create!( name: role ) unless Role.exists?( name: role )
+    end
   end
 end
