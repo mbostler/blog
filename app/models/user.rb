@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   def self.method_missing( meth, *args, &block )
     where( "UPPER(name)=?", meth.to_s.upcase ).first
   end
+  
+  def has_role?( role )
+    roles.map( &:name ).include? role.to_s.downcase
+  end
 
   def add_role( role )
     return true if roles.include?( role )

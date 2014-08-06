@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   force_ssl
   
+  # def ensure_role( role )
+  def ensure_admin_role
+    role = :admin
+
+    if !!current_user && current_user.has_role?( role )
+      return true
+    else
+      flash.alert = "Unauthorized action attempted."
+      redirect_to root_url and return
+    end
+  end
+  
   private
   def current_user
     @current_user ||= User.find( session[:user_id] ) if session[:user_id]

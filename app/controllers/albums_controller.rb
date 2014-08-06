@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_admin_role, except: [:index, :show]
 
   # GET /albums
   # GET /albums.json
